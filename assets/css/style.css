@@ -1,0 +1,13 @@
+.box {
+  background-color: lightblue;
+  border: 1px solid blue;
+  min-height: 100px;
+  min-width: 100% !important;
+  font-size: 2rem;
+}
+
+.card {
+  min-height: 200px;
+  background-color: midnightblue;
+  color: white;
+}
