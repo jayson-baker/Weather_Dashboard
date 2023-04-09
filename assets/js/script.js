@@ -1,6 +1,8 @@
 const searchBtn = $("#searchButton");
 const fiveDayForcast = $("#futureForcast");
 const currentCity = $("#currentCity");
+const userOptions = $("#userInteract");
+let searchNumber = localStorage.length;
 
 function getWeather(event) {
   event.preventDefault();
@@ -21,11 +23,11 @@ function getWeather(event) {
         let date = data.list[i].dt_txt.split(" ")[0].replaceAll("-", "/");
         //
         let weatherIcon = data.list[i].weather[0].description;
-        console.log(temp, wind, humidity, date, weatherIcon);
+        // console.log(temp, wind, humidity, date, weatherIcon);
         //
         if (i != 0) {
           let card = $("<div>");
-          card.addClass("card");
+          card.addClass("card w-auto mx-3");
           fiveDayForcast.append(card);
           //
           let cardBody = $("<div>");
@@ -62,10 +64,36 @@ function getWeather(event) {
           name.text(`${cityName} (${date}) ${weatherIcon}`);
           currentCity.append(name);
           //
+          let mainTemp = $("<h3>");
+          mainTemp.text(temp);
+          currentCity.append(mainTemp);
+          //
+          let mainWind = $("<h3>");
+          mainWind.text(wind);
+          currentCity.append(mainWind);
+          //
+          let mainHumidity = $("<h3>");
+          mainHumidity.text(humidity);
+          currentCity.append(mainHumidity);
+          //
         }
       }
+      searchNumber++;
+      localStorage.setItem(`History ${searchNumber}`, cityName);
     });
   });
 }
 
+function getHistory() {
+  for (let i = localStorage.length; i > 0; i--) {
+    let history = localStorage.getItem(`History ${i}`);
+    console.log(history);
+    let historyButton = $("<button>");
+    historyButton.addClass("btn btn-primary w-100 m-1");
+    historyButton.text(history);
+    userOptions.append(historyButton);
+  }
+}
+
+window.addEventListener("load", getHistory);
 searchBtn.on("click", getWeather);

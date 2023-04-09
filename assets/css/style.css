@@ -11,3 +11,8 @@
   background-color: midnightblue;
   color: white;
 }
+
+#currentCity {
+  outline: 2px rgb(39, 37, 37) solid;
+  min-height: 220px;
+}
