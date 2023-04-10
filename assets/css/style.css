@@ -1,11 +1,3 @@
-.box {
-  background-color: lightblue;
-  border: 1px solid blue;
-  min-height: 100px;
-  min-width: 100% !important;
-  font-size: 2rem;
-}
-
 .card {
   min-height: 200px;
   background-color: midnightblue;
@@ -13,6 +5,8 @@
 }
 
 #currentCity {
-  outline: 2px rgb(39, 37, 37) solid;
-  min-height: 220px;
+  outline: 2px rgb(107, 105, 105) solid;
+  background-color: midnightblue;
+  min-height: 240px;
+  color: white;
 }
