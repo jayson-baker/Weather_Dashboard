@@ -7,6 +7,7 @@ function getWeather(event) {
   event.preventDefault();
   clearOld();
   let cityName = $("#search").val();
+  cityName = formatCityName(cityName);
   const weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=acbf659b6dad995f4221a78b638e6923`;
   fetch(weatherUrl).then(function (response) {
     response.json().then(function (data) {
@@ -119,6 +120,15 @@ function getWeather(event) {
       localStorage.setItem(cityName.toUpperCase(), cityName);
     });
   });
+}
+
+function formatCityName(cityName) {
+  if (typeof cityName !== "string") {
+    return "";
+  } else {
+    cityName = cityName.toLowerCase();
+    return cityName.charAt(0).toUpperCase() + cityName.slice(1);
+  }
 }
 
 function clearOld() {
