@@ -2,7 +2,6 @@ const searchBtn = $("#searchButton");
 const fiveDayForcast = $("#futureForcast");
 const currentCity = $("#currentCity");
 const userOptions = $("#userInteract");
-let searchNumber = localStorage.length;
 
 function getWeather(event) {
   event.preventDefault();
