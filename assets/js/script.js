@@ -10,7 +10,6 @@ function getWeather(event) {
   const weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=acbf659b6dad995f4221a78b638e6923`;
   fetch(weatherUrl).then(function (response) {
     response.json().then(function (data) {
-      console.log(data);
       let mainDate = data.list[0].dt_txt.split(" ")[0].replaceAll("-", "/");
       let getMainIcon = data.list[0].weather[0].icon;
       let getMainTemp = `Temp: ${data.list[0].main.temp.toFixed(2)}°F`;
@@ -49,16 +48,14 @@ function getWeather(event) {
         if (currentHour <= 0) {
           currentHour = 21;
         }
-        console.log(currentHour);
+
         let elementDate = new Date(element.dt_txt).getHours();
-        console.log(elementDate);
 
         if (elementDate === currentHour) {
           fiveDayData.push(element);
         }
       });
 
-      console.log(fiveDayData);
       // Generate 5 Day Forecast Cards
       for (let i = 0; i < fiveDayData.length; i++) {
         let temp = `Temp: ${fiveDayData[i].main.temp.toFixed(2)}°F`;
@@ -70,7 +67,6 @@ function getWeather(event) {
         let date = fiveDayData[i].dt_txt.split(" ")[0].replaceAll("-", "/");
         //
         let weatherIcon = fiveDayData[i].weather[0].icon;
-        // console.log(temp, wind, humidity, date, weatherIcon);
         //
         let card = $("<div>");
         card.addClass("card w-auto mx-3 dayCastCard");
